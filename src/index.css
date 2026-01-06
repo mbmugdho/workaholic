@@ -1,0 +1,9 @@
+@import "tailwindcss";
+@plugin "daisyui";
+
+
+/* Optional: small global polish */
+html,
+body {
+  height: 100%;
+}
