@@ -1,11 +1,32 @@
-import React from 'react';
+export default function Pagination({ page, totalPages, onPageChange }) {
+  if (!totalPages || totalPages <= 1) return null
 
-const Pagination = () => {
+  const canPrev = page > 1
+  const canNext = page < totalPages
+
   return (
-    <div>
-      
-    </div>
-  );
-};
+    <div className="join flex justify-center mt-6">
+      <button
+        className="btn join-item"
+        disabled={!canPrev}
+        onClick={() => onPageChange(page - 1)}
+        type="button"
+      >
+        Prev
+      </button>
 
-export default Pagination;
+      <button className="btn join-item btn-ghost" type="button" disabled>
+        Page {page} / {totalPages}
+      </button>
+
+      <button
+        className="btn join-item"
+        disabled={!canNext}
+        onClick={() => onPageChange(page + 1)}
+        type="button"
+      >
+        Next
+      </button>
+    </div>
+  )
+}
