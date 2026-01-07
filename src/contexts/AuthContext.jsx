@@ -12,6 +12,7 @@ import toast from 'react-hot-toast'
 
 import { auth } from '../firebase/firebase.config'
 import { exchangeFirebaseToken } from '../services/authService'
+import { fetchMyProfile } from '../services/userService'
 
 export const AuthContext = createContext(null)
 
@@ -166,10 +167,20 @@ export function AuthProvider({ children }) {
       login,
       loginWithGoogle,
       logout,
+      refreshUser,
       token: localStorage.getItem(TOKEN_KEY),
     }),
     [firebaseUser, dbUser, loading]
   )
+
+  const refreshUser = async () => {
+    const token = localStorage.getItem(TOKEN_KEY)
+    if (!token) return
+
+    const data = await fetchMyProfile()
+    if (data?.user) setDbUser(data.user)
+    return data
+  }
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
 }
