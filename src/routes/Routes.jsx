@@ -14,10 +14,14 @@ import WorkerRoute from './WorkerRoute'
 
 import DashboardRedirect from '../pages/dashboard/DashboardRedirect'
 
-// Placeholder pages (we’ll replace with real dashboards later)
 import WorkerHome from '../pages/dashboard/worker/WorkerHome'
 import BuyerHome from '../pages/dashboard/buyer/BuyerHome'
 import AdminHome from '../pages/dashboard/admin/AdminHome'
+
+// Buyer payment pages
+import PurchaseCoin from '../pages/dashboard/buyer/PurchaseCoin'
+import Checkout from '../pages/dashboard/buyer/Checkout'
+import PaymentHistory from '../pages/dashboard/buyer/PaymentHistory'
 
 export default function AppRoutes() {
   return (
@@ -52,6 +56,32 @@ export default function AppRoutes() {
           element={
             <BuyerRoute>
               <BuyerHome />
+            </BuyerRoute>
+          }
+        />
+
+        {/* Buyer payments */}
+        <Route
+          path="buyer/purchase-coin"
+          element={
+            <BuyerRoute>
+              <PurchaseCoin />
+            </BuyerRoute>
+          }
+        />
+        <Route
+          path="buyer/checkout"
+          element={
+            <BuyerRoute>
+              <Checkout />
+            </BuyerRoute>
+          }
+        />
+        <Route
+          path="buyer/payments"
+          element={
+            <BuyerRoute>
+              <PaymentHistory />
             </BuyerRoute>
           }
         />
