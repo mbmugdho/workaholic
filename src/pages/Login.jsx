@@ -2,8 +2,11 @@ import { Link, useNavigate } from 'react-router-dom'
 import LoginForm from '../components/auth/LoginForm'
 import GoogleSignIn from '../components/auth/GoogleSignIn'
 import useAuth from '../hooks/useAuth'
+import usePageTitle from '../hooks/usePageTitle'
 
 export default function Login() {
+  usePageTitle("Workaholic | Login");
+
   const { login, loginWithGoogle, loading } = useAuth()
   const navigate = useNavigate()
 

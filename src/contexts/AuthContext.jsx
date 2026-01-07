@@ -23,7 +23,6 @@ export function AuthProvider({ children }) {
   const [dbUser, setDbUser] = useState(null)
   const [loading, setLoading] = useState(true)
 
-  // exchange + save server token (with proper error handling)
   const syncWithServer = async ({ role } = {}) => {
     const currentUser = auth.currentUser
     if (!currentUser) return
@@ -46,7 +45,16 @@ export function AuthProvider({ children }) {
     }
   }
 
-  // Email/pass register
+  // ✅ define this BEFORE useMemo
+  const refreshUser = async () => {
+    const token = localStorage.getItem(TOKEN_KEY)
+    if (!token) return
+
+    const data = await fetchMyProfile()
+    if (data?.user) setDbUser(data.user)
+    return data
+  }
+
   const register = async ({ name, email, password, photoURL, role }) => {
     setLoading(true)
     try {
@@ -80,7 +88,6 @@ export function AuthProvider({ children }) {
     }
   }
 
-  // Email/pass login
   const login = async ({ email, password }) => {
     setLoading(true)
     try {
@@ -93,10 +100,6 @@ export function AuthProvider({ children }) {
 
       if (code === 'auth/invalid-credential') {
         toast.error('Invalid email or password.')
-      } else if (code === 'auth/user-not-found') {
-        toast.error('No account found with this email.')
-      } else if (code === 'auth/too-many-requests') {
-        toast.error('Too many attempts. Please try again later.')
       } else {
         toast.error(err?.message || 'Login failed')
       }
@@ -107,7 +110,6 @@ export function AuthProvider({ children }) {
     }
   }
 
-  // Google login (optionally pass role if user is brand new)
   const loginWithGoogle = async ({ role } = {}) => {
     setLoading(true)
     try {
@@ -143,7 +145,7 @@ export function AuthProvider({ children }) {
       if (user) {
         try {
           await syncWithServer()
-        } catch (e) {
+        } catch {
           localStorage.removeItem(TOKEN_KEY)
         }
       } else {
@@ -172,15 +174,6 @@ export function AuthProvider({ children }) {
     }),
     [firebaseUser, dbUser, loading]
   )
-
-  const refreshUser = async () => {
-    const token = localStorage.getItem(TOKEN_KEY)
-    if (!token) return
-
-    const data = await fetchMyProfile()
-    if (data?.user) setDbUser(data.user)
-    return data
-  }
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
 }

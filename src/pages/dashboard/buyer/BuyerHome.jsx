@@ -3,8 +3,11 @@ import { fetchBuyerSummary } from '../../../services/userService'
 import Loading from '../../../components/common/Loading'
 import StatsCard from '../../../components/dashboard/StatsCard'
 import SubmissionReview from '../../../components/buyer/SubmissionReview'
+import usePageTitle from '../../../hooks/usePageTitle'
 
 export default function BuyerHome() {
+  usePageTitle('Workaholic | Buyer Dashboard')
+
   const { data, isLoading } = useQuery({
     queryKey: ['buyer-summary'],
     queryFn: fetchBuyerSummary,

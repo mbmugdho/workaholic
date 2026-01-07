@@ -1,8 +1,11 @@
 import { Link, useNavigate } from 'react-router-dom'
 import RegisterForm from '../components/auth/RegisterForm'
 import useAuth from '../hooks/useAuth'
+import usePageTitle from '../hooks/usePageTitle'
 
 export default function Register() {
+  usePageTitle('Workaholic | Register')
+
   const { register, loading } = useAuth()
   const navigate = useNavigate()
 

@@ -1,7 +1,9 @@
 import Card from '../../../components/common/Card'
 import useAuth from '../../../hooks/useAuth'
+import usePageTitle from '../../../hooks/usePageTitle'
 
 export default function AdminHome() {
+  usePageTitle('Workaholic | Admin Dashboard')
   const { user } = useAuth()
 
   return (

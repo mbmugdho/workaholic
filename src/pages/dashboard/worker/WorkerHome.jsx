@@ -3,8 +3,12 @@ import { fetchWorkerSummary } from '../../../services/userService'
 import Loading from '../../../components/common/Loading'
 import StatsCard from '../../../components/dashboard/StatsCard'
 import ApprovedSubmissions from '../../../components/worker/ApprovedSubmissions'
+import usePageTitle from '../../../hooks/usePageTitle'
+
 
 export default function WorkerHome() {
+  usePageTitle('Workaholic | Worker Dashboard')
+
   const { data, isLoading } = useQuery({
     queryKey: ['worker-summary'],
     queryFn: fetchWorkerSummary,
