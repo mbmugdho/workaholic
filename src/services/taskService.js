@@ -27,5 +27,5 @@ export async function fetchAvailableTasks() {
 
 export async function fetchTaskDetails(id) {
   const res = await api.get(`/api/tasks/details/${id}`);
-  return res.data; // { success, task }
+  return res.data;
 }

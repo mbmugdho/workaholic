@@ -25,6 +25,11 @@ import PaymentHistory from '../pages/dashboard/buyer/PaymentHistory'
 import AddTask from '../pages/dashboard/buyer/AddTask'
 import MyTasks from '../pages/dashboard/buyer/MyTasks'
 
+import TaskList from '../pages/dashboard/worker/TaskList'
+import TaskDetails from '../pages/dashboard/worker/TaskDetails'
+import MySubmissions from '../pages/dashboard/worker/MySubmissions'
+import Withdrawals from '../pages/dashboard/worker/Withdrawals'
+
 export default function AppRoutes() {
   return (
     <Routes>
@@ -49,6 +54,41 @@ export default function AppRoutes() {
           element={
             <WorkerRoute>
               <WorkerHome />
+            </WorkerRoute>
+          }
+        />
+        <Route
+          path="worker/tasklist"
+          element={
+            <WorkerRoute>
+              <TaskList />
+            </WorkerRoute>
+          }
+        />
+
+        <Route
+          path="worker/tasks/:id"
+          element={
+            <WorkerRoute>
+              <TaskDetails />
+            </WorkerRoute>
+          }
+        />
+
+        <Route
+          path="worker/submissions"
+          element={
+            <WorkerRoute>
+              <MySubmissions />
+            </WorkerRoute>
+          }
+        />
+
+        <Route
+          path="worker/withdrawals"
+          element={
+            <WorkerRoute>
+              <Withdrawals />
             </WorkerRoute>
           }
         />
