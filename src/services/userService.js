@@ -9,3 +9,8 @@ export async function fetchPublicStats() {
   const res = await api.get("/api/stats/public");
   return res.data; // { success, stats }
 }
+
+export async function fetchBuyerSummary() {
+  const res = await api.get("/api/stats/buyer/summary");
+  return res.data; // { success, summary }
+}
