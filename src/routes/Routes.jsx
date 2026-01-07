@@ -22,6 +22,8 @@ import AdminHome from '../pages/dashboard/admin/AdminHome'
 import PurchaseCoin from '../pages/dashboard/buyer/PurchaseCoin'
 import Checkout from '../pages/dashboard/buyer/Checkout'
 import PaymentHistory from '../pages/dashboard/buyer/PaymentHistory'
+import AddTask from '../pages/dashboard/buyer/AddTask'
+import MyTasks from '../pages/dashboard/buyer/MyTasks'
 
 export default function AppRoutes() {
   return (
@@ -82,6 +84,23 @@ export default function AppRoutes() {
           element={
             <BuyerRoute>
               <PaymentHistory />
+            </BuyerRoute>
+          }
+        />
+        <Route
+          path="buyer/add-task"
+          element={
+            <BuyerRoute>
+              <AddTask />
+            </BuyerRoute>
+          }
+        />
+
+        <Route
+          path="buyer/my-tasks"
+          element={
+            <BuyerRoute>
+              <MyTasks />
             </BuyerRoute>
           }
         />
