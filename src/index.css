@@ -1,8 +1,10 @@
 @import "tailwindcss";
-@plugin "daisyui";
 
+/* Tailwind v4 + DaisyUI v5: load DaisyUI via CSS plugin directive */
+@plugin "daisyui" {
+  themes: nord --default, dracula;
+}
 
-/* Optional: small global polish */
 html,
 body {
   height: 100%;
