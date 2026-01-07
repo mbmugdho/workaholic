@@ -19,3 +19,13 @@ export async function deleteTask(id) {
   const res = await api.delete(`/api/tasks/${id}`)
   return res.data // { success, refundCoins, buyerCoins }
 }
+
+export async function fetchAvailableTasks() {
+  const res = await api.get("/api/tasks/available");
+  return res.data; // { success, tasks }
+}
+
+export async function fetchTaskDetails(id) {
+  const res = await api.get(`/api/tasks/details/${id}`);
+  return res.data; // { success, task }
+}
