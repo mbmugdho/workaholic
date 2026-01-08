@@ -30,6 +30,8 @@ import TaskDetails from '../pages/dashboard/worker/TaskDetails'
 import MySubmissions from '../pages/dashboard/worker/MySubmissions'
 import Withdrawals from '../pages/dashboard/worker/Withdrawals'
 import WithdrawRequests from '../pages/dashboard/admin/WithdrawRequests'
+import ManageUsers from '../pages/dashboard/admin/ManageUsers'
+import ManageTasks from '../pages/dashboard/admin/ManageTasks'
 
 export default function AppRoutes() {
   return (
@@ -159,6 +161,23 @@ export default function AppRoutes() {
           element={
             <AdminRoute>
               <WithdrawRequests />
+            </AdminRoute>
+          }
+        />
+        <Route
+          path="admin/manage-users"
+          element={
+            <AdminRoute>
+              <ManageUsers />
+            </AdminRoute>
+          }
+        />
+
+        <Route
+          path="admin/manage-tasks"
+          element={
+            <AdminRoute>
+              <ManageTasks />
             </AdminRoute>
           }
         />
