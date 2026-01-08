@@ -1,6 +1,7 @@
 import { Link, NavLink } from 'react-router-dom'
 import ThemeToggle from './ThemeToggle'
 import useAuth from '../../hooks/useAuth'
+import UserAvatar from '../common/UserAvatar'
 
 export default function Navbar() {
   const { firebaseUser, user, logout, loading } = useAuth()
@@ -63,12 +64,11 @@ export default function Navbar() {
             <div className="dropdown dropdown-end">
               <button className="btn btn-ghost btn-circle avatar" type="button">
                 <div className="w-10 rounded-full">
-                  <img
-                    alt="User avatar"
-                    src={
-                      firebaseUser.photoURL ||
-                      'https://i.ibb.co/2nS2d4b/default-user.png'
-                    }
+                  <UserAvatar
+                    photoURL={firebaseUser?.photoURL || user?.photoURL}
+                    displayName={firebaseUser?.displayName || user?.displayName}
+                    email={firebaseUser?.email || user?.email}
+                    size={40}
                   />
                 </div>
               </button>

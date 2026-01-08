@@ -3,6 +3,7 @@ import useAuth from '../../hooks/useAuth'
 import ThemeToggle from '../common/ThemeToggle'
 import NotificationBell from './NotificationBell'
 import NotificationPopup from './NotificationPopup'
+import UserAvatar from '../common/UserAvatar'
 
 export default function DashboardNav({ onOpenSidebar }) {
   const { firebaseUser, user } = useAuth()
@@ -55,12 +56,11 @@ export default function DashboardNav({ onOpenSidebar }) {
 
           <div className="avatar">
             <div className="w-9 rounded-full">
-              <img
-                alt="User"
-                src={
-                  firebaseUser?.photoURL ||
-                  'https://i.ibb.co/2nS2d4b/default-user.png'
-                }
+              <UserAvatar
+                photoURL={firebaseUser?.photoURL || user?.photoURL}
+                displayName={firebaseUser?.displayName || user?.displayName}
+                email={firebaseUser?.email || user?.email}
+                size={40}
               />
             </div>
           </div>

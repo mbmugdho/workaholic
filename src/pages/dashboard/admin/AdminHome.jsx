@@ -1,23 +1,41 @@
-import Card from '../../../components/common/Card'
-import useAuth from '../../../hooks/useAuth'
-import usePageTitle from '../../../hooks/usePageTitle'
+import { useQuery } from '@tanstack/react-query'
+import Loading from '../../../components/common/Loading'
+import StatsCard from '../../../components/dashboard/StatsCard'
+import { fetchAdminSummary } from '../../../services/adminService'
 
 export default function AdminHome() {
-  usePageTitle('Workaholic | Admin Dashboard')
-  const { user } = useAuth()
+  const { data, isLoading } = useQuery({
+    queryKey: ['admin-summary'],
+    queryFn: fetchAdminSummary,
+  })
+
+  const summary = data?.summary
 
   return (
-    <Card
-      title="Admin Home"
-      subtitle="Phase 5 placeholder (platform stats will be added in Phase 9)"
-    >
-      <p className="text-sm">
-        Role: <span className="font-medium capitalize">{user?.role}</span>
-      </p>
-      <p className="text-sm">
-        Coins (not relevant for admin):{' '}
-        <span className="font-medium">{user?.coins ?? 0}</span>
-      </p>
-    </Card>
+    <div className="space-y-6">
+      <div>
+        <h1 className="text-2xl font-bold">Admin Dashboard</h1>
+        <p className="text-sm text-base-content/70 mt-1">
+          Monitor users, coins, payments, tasks, and withdrawals.
+        </p>
+      </div>
+
+      {isLoading ? (
+        <Loading label="Loading admin stats..." />
+      ) : (
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+          <StatsCard label="Total Workers" value={summary?.totalWorkers ?? 0} />
+          <StatsCard label="Total Buyers" value={summary?.totalBuyers ?? 0} />
+          <StatsCard
+            label="Total Available Coins"
+            value={summary?.totalAvailableCoins ?? 0}
+          />
+          <StatsCard
+            label="Total Payments"
+            value={`$${Number(summary?.totalPayments ?? 0).toFixed(2)}`}
+          />
+        </div>
+      )}
+    </div>
   )
 }

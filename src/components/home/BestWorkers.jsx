@@ -2,6 +2,7 @@ import { useQuery } from '@tanstack/react-query'
 import { fetchTopWorkers } from '../../services/userService'
 import Loading from '../common/Loading'
 import EmptyState from '../common/EmptyState'
+import UserAvatar from '../common/UserAvatar'
 
 export default function BestWorkers() {
   const { data, isLoading, isError } = useQuery({
@@ -50,12 +51,11 @@ export default function BestWorkers() {
                   <div className="flex items-center gap-4">
                     <div className="avatar">
                       <div className="w-14 rounded-full">
-                        <img
-                          src={
-                            w.photoURL ||
-                            'https://i.ibb.co/2nS2d4b/default-user.png'
-                          }
-                          alt={w.displayName || 'Worker'}
+                        <UserAvatar
+                          photoURL={w.photoURL}
+                          displayName={w.displayName}
+                          email={w.email}
+                          size={56}
                         />
                       </div>
                     </div>

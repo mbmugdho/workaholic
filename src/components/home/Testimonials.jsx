@@ -1,35 +1,36 @@
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Pagination } from "swiper/modules";
+import { Swiper, SwiperSlide } from 'swiper/react'
+import { Autoplay, Pagination } from 'swiper/modules'
 
-import "swiper/css";
-import "swiper/css/pagination";
+import 'swiper/css'
+import 'swiper/css/pagination'
+import UserAvatar from '../common/UserAvatar'
 
 const testimonials = [
   {
-    name: "Ayesha Rahman",
-    photo: "https://i.ibb.co/2nS2d4b/default-user.png",
+    name: 'Ayesha Rahman',
+    photo: 'https://i.ibb.co/2nS2d4b/default-user.png',
     quote:
-      "The task details are clear and the dashboard makes it easy to track approvals and earnings.",
+      'The task details are clear and the dashboard makes it easy to track approvals and earnings.',
   },
   {
-    name: "Siam Hasan",
-    photo: "https://i.ibb.co/2nS2d4b/default-user.png",
+    name: 'Siam Hasan',
+    photo: 'https://i.ibb.co/2nS2d4b/default-user.png',
     quote:
-      "As a buyer, I can review submissions quickly and stay organized with the status updates.",
+      'As a buyer, I can review submissions quickly and stay organized with the status updates.',
   },
   {
-    name: "Nusrat Jahan",
-    photo: "https://i.ibb.co/2nS2d4b/default-user.png",
+    name: 'Nusrat Jahan',
+    photo: 'https://i.ibb.co/2nS2d4b/default-user.png',
     quote:
-      "The coin system is transparent. I always know how much I can withdraw and when.",
+      'The coin system is transparent. I always know how much I can withdraw and when.',
   },
   {
-    name: "Tanvir Ahmed",
-    photo: "https://i.ibb.co/2nS2d4b/default-user.png",
+    name: 'Tanvir Ahmed',
+    photo: 'https://i.ibb.co/2nS2d4b/default-user.png',
     quote:
-      "Responsive UI and smooth transitions. The experience feels modern and fast.",
+      'Responsive UI and smooth transitions. The experience feels modern and fast.',
   },
-];
+]
 
 export default function Testimonials() {
   return (
@@ -60,7 +61,12 @@ export default function Testimonials() {
                     <div className="flex items-center gap-3">
                       <div className="avatar">
                         <div className="w-12 rounded-full">
-                          <img src={t.photo} alt={t.name} />
+                          <UserAvatar
+                            photoURL={t.photoURL}
+                            displayName={t.name}
+                            email={t.email}
+                            size={56}
+                          />
                         </div>
                       </div>
                       <div>
@@ -82,5 +88,5 @@ export default function Testimonials() {
         </div>
       </div>
     </section>
-  );
+  )
 }
